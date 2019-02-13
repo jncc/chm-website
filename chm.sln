@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1501FCD7-F45A-4BB8-9B69-9FB32EAE38CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chm.Website", "src\chm.Website\chm.Website.csproj", "{8D39FD5B-0960-477E-BA3F-76F3DAF39062}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D39FD5B-0960-477E-BA3F-76F3DAF39062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D39FD5B-0960-477E-BA3F-76F3DAF39062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D39FD5B-0960-477E-BA3F-76F3DAF39062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D39FD5B-0960-477E-BA3F-76F3DAF39062}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8D39FD5B-0960-477E-BA3F-76F3DAF39062} = {1501FCD7-F45A-4BB8-9B69-9FB32EAE38CE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE08DD53-D59C-4FBE-B174-B079BB925FD3}
+	EndGlobalSection
+EndGlobal
