@@ -35,7 +35,7 @@
     <PackageReference Include="cloudscribe.Core.SimpleContent" Version="4.0.8" />
     <PackageReference Include="cloudscribe.SimpleContent.Web" Version="4.0.24" />
     <PackageReference Include="cloudscribe.Core.SimpleContent.CompiledViews.Bootstrap4" Version="4.0.5" />
-    <PackageReference Include="cloudscribe.SimpleContent.CompiledViews.Bootstrap4" Version="4.0.20" />
+    <PackageReference Include="cloudscribe.SimpleContent.CompiledViews.Bootstrap4" Version="4.0.21" />
     <PackageReference Include="cloudscribe.SimpleContent.MetaWeblog" Version="4.0.8" />
     <PackageReference Include="cloudscribe.SimpleContent.Syndication" Version="4.0.5" />
     <PackageReference Include="cloudscribe.SimpleContent.ContentTemplates.Bootstrap4" Version="1.0.13" />

@@ -9,7 +9,7 @@ namespace Microsoft.AspNetCore.Builder
     {
         public static IRouteBuilder UseCustomRoutes(this IRouteBuilder routes)
         {
-            routes.AddBlogRoutesForSimpleContent();
+            //routes.AddBlogRoutesForSimpleContent();
             routes.AddSimpleContentStaticResourceRoutes();
             routes.AddCloudscribeFileManagerRoutes();
             routes.MapRoute(
