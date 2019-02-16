@@ -18,7 +18,7 @@
     var ieBodyClass = isIE ? "IE" : "";
 }
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 <head>
     <meta charset="utf-8" />
     <title>@ViewData["Title"] - @(Tenant?.SiteName ?? "Sample")</title>
@@ -102,6 +102,9 @@
                 }
                  <li class="border-left pl-2 mr-2">
                     <a href="@siteRoot/contact">Contact</a>
+                </li>
+                <li class="border-left pl-2 mr-2">
+                    <a class="text-nowrap" target="_blank" href="https://www.esdm.co.uk/?utm_source=@Context.Request.Host.Value&amp;utm_medium=referral&amp;utm_campaign=websitebyexegesis">Website by Exegesis SDM Ltd</a>
                 </li>
                 <li class="border-left pl-2 mr-2">
                     @* you are free to remove the powered by cloudscribe link but we appreciate it if you choose to keep it! *@
