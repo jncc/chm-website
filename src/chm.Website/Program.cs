@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore;
+﻿using esdm.shared.ConfigProvider.Models;
+
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using System.IO;
 using System.Linq;
 
 namespace chm.Website
@@ -13,6 +16,22 @@ namespace chm.Website
         public static void Main(string[] args)
         {
             var hostBuilder = CreateWebHostBuilder(args);
+
+            var environment = hostBuilder.GetSetting("environment") ?? "Production";
+            var preBuildConfig = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
+                    .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
+                    .Build();
+
+            var postgreSqlConnectionString = preBuildConfig.GetConnectionString("EntityFrameworkConnection");
+            var optionsAction = ConfigPostgreSqlStartupExtensions.GetOptionsBuilderForPostgreSql(postgreSqlConnectionString, 10, 10);
+            hostBuilder.ConfigureAppConfiguration((builderContext, conf) =>
+            {
+                conf.AddPostgreSqlConfig(optionsAction);
+                conf.AddPostgreSqlConfigOverride(optionsAction);
+            });
+
             var host = hostBuilder.Build();
 
             using (var scope = host.Services.CreateScope())
@@ -20,6 +39,7 @@ namespace chm.Website
                 var scopedServices = scope.ServiceProvider;
                 try
                 {
+                    scopedServices.GetRequiredService<IDefaultMigrator>().InsertConfigurationDefaults();
                     EnsureDataStorageIsReady(scopedServices);
 
                 }

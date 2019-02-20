@@ -1,3 +1,5 @@
+using esdm.shared.ConfigProvider.Resolvers;
+using esdm.shared.ConfigProvider.Web.UI.Localisation;
 using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -12,23 +14,13 @@ namespace Microsoft.Extensions.DependencyInjection
             )
         {
             var connectionString = config.GetConnectionString("EntityFrameworkConnection");
-
-
-
+            
             services.AddCloudscribeCorePostgreSqlStorage(connectionString);
             services.AddCloudscribeLoggingPostgreSqlStorage(connectionString);
 
             services.AddCloudscribeSimpleContentPostgreSqlStorage(connectionString);
 
-
-
-
-
-
-
-
-
-
+            
 
             return services;
         }
@@ -52,12 +44,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddMetaWeblogForSimpleContent(config.GetSection("MetaWeblogApiOptions"));
             services.AddSimpleContentRssSyndiction();
-
-
-
-
-
-
+            
 
             return services;
         }

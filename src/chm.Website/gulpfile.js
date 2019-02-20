@@ -12,7 +12,7 @@ var gulp = require("gulp"),
 
 var config = {
     srcSassDir: './app-scss',
-    cssOutDir: './sitefiles/s1/themes/custom1/wwwroot/css',
+    cssOutDir: './sitefiles/s1/themes/chm-1/wwwroot/css',
     srcFileWatchPattern: './app-scss/*.scss'
 };
 

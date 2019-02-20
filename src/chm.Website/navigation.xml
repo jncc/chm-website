@@ -507,7 +507,168 @@
                 </Children>
             </NavNode>
 
-              <NavNode key="SystemInfo"
+            <NavNode key="Configuration"
+                            controller="ConfigurationEditor"
+                            action="Default"
+                            text="Configuration"
+                            iconCssClass="fas fa-cog"
+                            componentVisibility="breadcrumbs,childtree,parenttree"
+                            authorizationPolicy="ConfigurationManagementPolicy">
+              <Children>
+                <NavNode key="ConfigurationDefault"
+                        controller="ConfigurationDefault"
+                        action="DefaultView" text="Default"
+                        preservedRouteParameters="className"
+                        componentVisibility="breadcrumbs"
+                        authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationCreateOverride"
+                          controller="ConfigurationOverride"
+                          action="Create" text="Create Override"
+                          preservedRouteParameters="className"
+                          componentVisibility="breadcrumbs"
+                          authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationSimpleCreateOverride"
+                          controller="ConfigurationOverride"
+                          action="CreateSimple" text="Create Override"
+                          preservedRouteParameters="className"
+                          componentVisibility="breadcrumbs"
+                          authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationEditOverride"
+                         controller="ConfigurationOverride"
+                         action="Edit" text="Edit Override"
+                         preservedRouteParameters="className"
+                         componentVisibility="breadcrumbs"
+                         authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationEditFlatOverride"
+                          controller="ConfigurationOverride"
+                          action="EditFlat" text="Edit Override"
+                          preservedRouteParameters="className"
+                          componentVisibility="breadcrumbs"
+                          authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationUpdateOverride"
+                            controller="ConfigurationOverride"
+                            action="Update" text="Update Override"
+                            preservedRouteParameters="className"
+                            componentVisibility="breadcrumbs"
+                            authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationCreateScopedOverride"
+                         controller="ConfigurationScopedOverride"
+                         action="Create" text="Create Scoped Override"
+                         preservedRouteParameters="className"
+                         componentVisibility="breadcrumbs"
+                         authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationSimpleCreateScopedOverride"
+                          controller="ConfigurationScopedOverride"
+                          action="CreateSimple" text="Create Scoped Override"
+                          preservedRouteParameters="className"
+                          componentVisibility="breadcrumbs"
+                          authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationEditScopedOverride"
+                          controller="ConfigurationScopedOverride"
+                          action="Edit" text="Edit Scoped Override"
+                          preservedRouteParameters="className, scopeType, identifier"
+                          componentVisibility="breadcrumbs"
+                          authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationEditFlatScopedOverride"
+                            controller="ConfigurationScopedOverride"
+                            action="EditFlat" text="Edit Scoped Override"
+                            preservedRouteParameters="className, scopeType, identifier"
+                            componentVisibility="breadcrumbs"
+                            authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationCopyScopedOverride"
+                            controller="ConfigurationScopedOverride"
+                            action="Copy" text="Copy Scoped Override"
+                            preservedRouteParameters="className, scopeType, identifier"
+                            componentVisibility="breadcrumbs"
+                            authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+
+                <NavNode key="ConfigurationTransformList"
+                            controller="ConfigurationOverride"
+                            action="Transform" text="Transforms"
+                            preservedRouteParameters="className"
+                            componentVisibility="breadcrumbs"
+                            authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationTransformView"
+                         controller="ConfigurationTransform"
+                         action="View" text="View Transform"
+                         preservedRouteParameters="id"
+                         componentVisibility="breadcrumbs"
+                         authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationTransformCopy"
+                         controller="ConfigurationTransform"
+                         action="Copy" text="Copy Transform"
+                         preservedRouteParameters="id"
+                         componentVisibility="breadcrumbs"
+                         authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationTransformCreate"
+                          controller="ConfigurationTransform"
+                          action="Create" text="Create Transform"
+                          preservedRouteParameters="className"
+                          componentVisibility="breadcrumbs"
+                          authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationTransformPreview"
+                          controller="ConfigurationTransform"
+                          action="Preview" text="Preview Transform"
+                          componentVisibility="breadcrumbs"
+                          authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationTransformTest"
+                          controller="ConfigurationTransform"
+                          action="Test" text="Test Transform"
+                          componentVisibility="breadcrumbs"
+                          authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationSearch"
+                          controller="ConfigurationSearch"
+                          action="Index" text="Search"
+                          componentVisibility="breadcrumbs"
+                          authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+                <NavNode key="ConfigurationSearchResults"
+                            controller="ConfigurationSearch"
+                            action="Search" text="Search Results"
+                            componentVisibility="breadcrumbs"
+                            authorizationPolicy="ConfigurationManagementPolicy">
+                  <Children />
+                </NavNode>
+              </Children>
+            </NavNode>
+
+
+            <NavNode key="SystemInfo"
                        controller="SystemInfo"
                        action="Index"
                        text="System Information"

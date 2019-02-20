@@ -48,7 +48,7 @@ namespace Microsoft.AspNetCore.Builder
             services.Configure<MvcOptions>(options =>
             {
                 //https://github.com/aspnet/AspNetCore/issues/4591
-                //options.EnableEndpointRouting = false;
+                options.EnableEndpointRouting = false;
 
                 if (sslIsAvailable)
                 {
@@ -79,7 +79,7 @@ namespace Microsoft.AspNetCore.Builder
                 {
                     options.ViewLocationExpanders.Add(new cloudscribe.Core.Web.Components.SiteViewLocationExpander());
                 })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 ;
 
             return services;
