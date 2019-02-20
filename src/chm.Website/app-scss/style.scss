@@ -16,49 +16,49 @@ body {
 
 #newPostLink {
     position: absolute;
-    top: 70px;
+    top: 180px;
     right: 0px;
 }
 
 #editPostLink {
     position: absolute;
-    top: 100px;
+    top: 210px;
     right: 0px;
 }
 
 #unpublishPostLink {
     position: absolute;
-    top: 130px!important;
+    top: 240px!important;
     right: 0px!important;
 }
 
 #pageManagerLink {
     position: absolute;
-    top: 70px;
+    top: 180px;
     right: 0px;
 }
 
 #newPageLink {
     position: absolute;
-    top: 100px;
+    top: 210px;
     right: 0px;
 }
 
 #editPageLink {
     position: absolute;
-    top: 130px;
+    top: 240px;
     right: 0px
 }
 
 #unpublishPageLink {
     position: absolute;
-    top: 160px!important;
+    top: 270px!important;
     right: 0px!important
 }
 
 #sidenavtoggle {
     position: absolute;
-    top: 120px;
+    top: 210px;
     right: 5px;
 }
 
@@ -83,4 +83,8 @@ td img, video, iframe {
 
 .table td, .table th {
     vertical-align: inherit;
+}
+
+.navbar.fixed-top {
+    top:100px;
 }
