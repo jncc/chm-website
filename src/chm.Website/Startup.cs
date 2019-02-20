@@ -1,3 +1,5 @@
+using esdm.shared.RedirectManager;
+using esdm.shared.RedirectManager.Definitions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -37,6 +39,8 @@ namespace chm.Website
             // This is a custom extension method in Config/DataProtection.cs
             // These settings require your review to correctly configur data protection for your environment
             services.SetupDataProtection(_configuration, _environment);
+
+            services.AddEsdmServices(_configuration);
 
             services.AddAuthorization(options =>
             {
@@ -98,7 +102,10 @@ namespace chm.Website
             IHostingEnvironment env,
             ILoggerFactory loggerFactory,
             IOptions<cloudscribe.Core.Models.MultiTenantOptions> multiTenantOptionsAccessor,
-            IOptions<RequestLocalizationOptions> localizationOptionsAccessor
+            IOptions<RequestLocalizationOptions> localizationOptionsAccessor,
+            IOptions<RedirectDefinitions> redirectDefinitions,
+            IOptions<RewriteRuleDefinitions> rewriteDefinitions,
+            IOptions<RedirectManagerSettings> redirectManagerSettings
             )
         {
             if (env.IsDevelopment())
@@ -120,9 +127,12 @@ namespace chm.Website
             }
             app.UseStaticFiles();
             app.UseCloudscribeCommonStaticFiles();
+            app.UseConfigProviderWebUiStaticResources();
             app.UseCookiePolicy();
 
             app.UseRequestLocalization(localizationOptionsAccessor.Value);
+
+            app.UseRedirectManager(redirectDefinitions, rewriteDefinitions, redirectManagerSettings);
 
             var multiTenantOptions = multiTenantOptionsAccessor.Value;
 

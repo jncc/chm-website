@@ -40,7 +40,7 @@ var ieBodyClass = isIE ? "IE" : "";
     <google-analytics profile-id="@Tenant.GoogleAnalyticsProfileId" user-id="@User.GetUserId()"></google-analytics>
     <base href="@Context.Request.Path" />
 </head>
-<body class="d-flex flex-column @ViewData["BodyClass"] @ieBodyClass" style="padding-top:160px;">
+<body class="d-flex flex-column @ViewData["BodyClass"] @ieBodyClass">
     <header>
         <a id="skippy" class="sr-only sr-only-focusable" href="#content">
             <div class="container">
@@ -50,7 +50,7 @@ var ieBodyClass = isIE ? "IE" : "";
         <div class="fixed-top brand-header">
             @if (!string.IsNullOrWhiteSpace(Tenant.LogoUrl))
             {
-                <a style="@themeSettings.GetNavbarStyle()" href="~/@(Tenant?.SiteFolderName ?? "")"><img src="@Tenant.LogoUrl" alt="@Tenant.SiteName" style="height:98px;" class="mr-3" /></a>
+                <a style="@themeSettings.GetNavbarStyle()" href="~/@(Tenant?.SiteFolderName ?? "")"><img src="@Tenant.LogoUrl" alt="@Tenant.SiteName" style="height:100px;" class="mr-3" /></a>
             }
             @if (Tenant.ShowSiteNameLink)
             {
@@ -122,7 +122,6 @@ var ieBodyClass = isIE ? "IE" : "";
                     <a class="text-nowrap" target="_blank" href="https://www.esdm.co.uk/?utm_source=@Context.Request.Host.Value&amp;utm_medium=referral&amp;utm_campaign=websitebyexegesis">Website by Exegesis SDM Ltd</a>
                 </li>
                 <li class="pl-sm-2 mr-sm-2">
-                    @* you are free to remove the powered by cloudscribe link but we appreciate it if you choose to keep it! *@
                     <a class="text-nowrap" target="_blank" href="https://www.cloudscribe.com/?utm_source=@Context.Request.Host.Value&amp;utm_medium=referral&amp;utm_campaign=poweredbycloudscribe">Powered by cloudscribe</a>
                 </li>
             </ul>

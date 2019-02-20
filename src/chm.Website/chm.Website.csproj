@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>chm.Website-A055BD8D-F614-492E-A65D-175B795A2A6A</UserSecretsId>
   </PropertyGroup>
 
@@ -57,20 +57,15 @@
 
 
     <PackageReference Include="cloudscribe.Web.Localization" Version="2.0.*" />
+
+    <PackageReference Include="esdm.shared.RedirectManager" Version="1.2.2" />
+    <PackageReference Include="esdm.shared.ConfigProvider.Data.PostgreSql" Version="1.4.1" />
+    <PackageReference Include="esdm.shared.ConfigProvider.Web.UI" Version="1.4.1" />
     
     <PackageReference Include="Microsoft.AspNetCore.App" />
 
 
-    <!-- Commercial libs start -->
-
-
-
-
-
-
-
-
-    <!-- Commercial libs end -->
+   
     
   </ItemGroup>
 
