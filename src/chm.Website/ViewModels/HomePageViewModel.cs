@@ -1,12 +1,9 @@
 ﻿using cloudscribe.SimpleContent.ContentTemplates.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace chm.Website.ViewModels
 {
-    public class HomePageViewModel : SectionsWithImageViewModel
+    public class HomePageViewModel : SimpleGalleryViewModel
     {
         public HomePageViewModel()
         {
@@ -14,5 +11,8 @@ namespace chm.Website.ViewModels
         }
 
         public string TwitterHandle { get; set; }
+
+        [Required(ErrorMessage ="Carousel Interval is required.")]
+        public int ImageRotationIntervalInMilliseconds { get; set; } = 5000;
     }
 }

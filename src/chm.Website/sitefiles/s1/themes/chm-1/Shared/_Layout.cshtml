@@ -54,7 +54,7 @@ var ieBodyClass = isIE ? "IE" : "";
             }
             @if (Tenant.ShowSiteNameLink)
             {
-                <a href="~/@(Tenant?.SiteFolderName ?? "")" class="navbar-brand">@Tenant.SiteName </a>
+                <a href="~/@(Tenant?.SiteFolderName ?? "")" class="navbar-brand" aria-hidden="true">@Tenant.SiteName </a>
             }
             <img src="~/img/union-jack-255px.png" alt="union jack" class="d-none d-lg-inline-block" style="height:40px;" />
             <partial name="SiteHeaderPartial" />
@@ -111,7 +111,7 @@ var ieBodyClass = isIE ? "IE" : "";
                 </li>
                 @if (Tenant != null && !string.IsNullOrWhiteSpace(Tenant.PrivacyPolicy))
                 {
-                    <li class="pl-2 mr-sm-2">
+                    <li class="pl-sm-2 mr-sm-2">
                         <a asp-controller="Privacy" asp-action="Index">Privacy Policy</a>
                     </li>
                 }
