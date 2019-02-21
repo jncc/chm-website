@@ -59,8 +59,8 @@
     <PackageReference Include="cloudscribe.Web.Localization" Version="2.0.*" />
 
     <PackageReference Include="esdm.shared.RedirectManager" Version="1.2.3" />
-    <PackageReference Include="esdm.shared.ConfigProvider.Data.PostgreSql" Version="1.4.1" />
-    <PackageReference Include="esdm.shared.ConfigProvider.Web.UI" Version="1.4.1" />
+    <PackageReference Include="esdm.shared.ConfigProvider.Data.PostgreSql" Version="1.4.2" />
+    <PackageReference Include="esdm.shared.ConfigProvider.Web.UI" Version="1.4.2" />
     
     <PackageReference Include="Microsoft.AspNetCore.App" />
 
