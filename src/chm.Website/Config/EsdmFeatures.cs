@@ -14,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             var connectionString = config.GetConnectionString("EntityFrameworkConnection");
 
             services.AddConfigurationProviderPostgreSqlStorage(connectionString);
+            services.AddConfigurationProviderPostgreSqlDirectDatabaseCommands(config);
             services.AddConfigurationProviderUIServices(config);
            
             services.AddScoped<IScopeResolver<ConfigurationTextPack>, TextPackScopeResolver<ConfigurationTextPack>>();
