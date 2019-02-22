@@ -1,15 +1,3 @@
 ﻿@model chm.Website.ViewModels.HomePageViewModel
-@using Microsoft.AspNetCore.Http.Features
-@{
-    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
-    var haveConsent = consentFeature?.CanTrack ?? true; // twitter has cookies
-                                                       
-    //https://developer.twitter.com/en/docs/twitter-for-websites/timelines/overview
-}
 <partial name="@Model.Layout" model="Model" />
-@if (haveConsent && !string.IsNullOrWhiteSpace(Model.TwitterHandle))
-{
-    <a class="twitter-timeline" href="https://twitter.com/@Model.TwitterHandle" data-height="600" data-width="500">Tweets by @Model.TwitterHandle</a>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-}
 

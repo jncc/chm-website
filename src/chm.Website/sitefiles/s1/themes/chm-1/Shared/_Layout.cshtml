@@ -1,5 +1,7 @@
 ﻿@inject ISiteContextResolver siteResolver
+@inject ICoreThemeHelper themeHelper
 @{
+    var themeSettings = themeHelper.GetThemeSettings();
     @*
         These settings can be set by a main view to show additional columns.
         Views that push content into the optional sections SideNav, AsidePrimary, and AsideSecondary
@@ -7,15 +9,15 @@
         otherwise an error will occur.
         The sideNav column also supports a toggle so it can be hidden and toggled visible even though it renders.
     *@
-    bool sideNavVisible = true.Equals(ViewData["SideNavVisible"]);
-    string sideNavToggleClass = ViewData["SideNavToggle"]?.ToString() ?? "collapse";
-    bool asidePrimaryVisible = true.Equals(ViewData["AsidePrimaryVisible"]);
-    bool asideSecondaryVisible = true.Equals(ViewData["AsideSecondaryVisible"]);
-    var Tenant = await siteResolver.ResolveSite(Context.Request.Host.Host, Context.Request.Path);
-    var siteRoot = "";
-    if (!string.IsNullOrWhiteSpace(Tenant.SiteFolderName)) { siteRoot = "/" + Tenant.SiteFolderName; }
-    var isIE = Context.Request.Headers["User-Agent"].ToString().Contains("Trident");
-    var ieBodyClass = isIE ? "IE" : "";
+bool sideNavVisible = true.Equals(ViewData["SideNavVisible"]);
+string sideNavToggleClass = ViewData["SideNavToggle"]?.ToString() ?? "collapse";
+bool asidePrimaryVisible = true.Equals(ViewData["AsidePrimaryVisible"]);
+bool asideSecondaryVisible = true.Equals(ViewData["AsideSecondaryVisible"]);
+var Tenant = await siteResolver.ResolveSite(Context.Request.Host.Host, Context.Request.Path);
+var siteRoot = "";
+if (!string.IsNullOrWhiteSpace(Tenant.SiteFolderName)) { siteRoot = "/" + Tenant.SiteFolderName; }
+var isIE = Context.Request.Headers["User-Agent"].ToString().Contains("Trident");
+var ieBodyClass = isIE ? "IE" : "";
 }
 <!DOCTYPE html>
 <html lang="en-GB">
@@ -25,10 +27,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     @RenderSection("Meta", required: false)
     <environment names="Development">
-        <link rel="stylesheet" href="~/css/style.css" cs-resolve-theme-resource="true" cs-tenant="@Tenant" />
+        <link rel="stylesheet" href="~/css/style.css" cs-resolve-theme-resource="true" cs-tenant="@Tenant" asp-append-version="true" />
     </environment>
     <environment names="Staging,Production">
-        <link rel="stylesheet" href="~/css/style.min.css" cs-resolve-theme-resource="true" cs-tenant="@Tenant" />
+        <link rel="stylesheet" href="~/css/style.min.css" cs-resolve-theme-resource="true" cs-tenant="@Tenant" asp-append-version="true" />
     </environment>
     @if (isIE)
     {
@@ -45,13 +47,25 @@
                 <span class="skiplink-text">Skip to main content</span>
             </div>
         </a>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-            <a href="~/@(Tenant?.SiteFolderName ?? "")" class="navbar-brand">@(Tenant?.SiteName ?? "Sample")</a>
+        <div class="fixed-top brand-header">
+            @if (!string.IsNullOrWhiteSpace(Tenant.LogoUrl))
+            {
+                <a style="@themeSettings.GetNavbarStyle()" href="~/@(Tenant?.SiteFolderName ?? "")"><img src="@Tenant.LogoUrl" alt="@Tenant.SiteName" style="height:100px;" class="mr-3" /></a>
+            }
+            @if (Tenant.ShowSiteNameLink)
+            {
+                <a href="~/@(Tenant?.SiteFolderName ?? "")" class="navbar-brand" aria-hidden="true">@Tenant.SiteName </a>
+            }
+            <img src="~/img/union-jack-255px.png" alt="union jack" class="d-none d-lg-inline-block" style="height:40px;" />
+            <partial name="SiteHeaderPartial" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark pt-0 pb-0" style="height:60px;">
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse bg-dark pl-2" id="navbarNavDropdown">
                 @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4TopNavWithDropdowns", filterName = NamedNavigationFilters.TopNav, startingNodeKey = "" })
                 @await Html.PartialAsync("_LoginPartialWithDropdowns")
             </div>
@@ -61,7 +75,7 @@
         @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4Breadcrumbs", filterName = NamedNavigationFilters.Breadcrumbs, startingNodeKey = "" })
         <div class="row">
             <main id="content" role="main" class="col order-3">
-                @await Html.PartialAsync("AlertsPartial")
+                <partial name="AlertsPartial" />
                 <partial name="_CookieConsentPartial" />
                 @RenderBody()
             </main>
@@ -89,31 +103,34 @@
         </div>
     </div>
     <footer class="sticky-bottom border pt-2 d-flex h-100 flex-wrap flex-grow justify-content-center">
+        <partial name="SiteFooterPartial" />
         <div class="p-2">
-            <ul class="list-unstyled d-flex flex-wrap">
-                <li class=" mr-2">
+            <ul class="list-unstyled d-md-flex flex-wrap">
+                <li class="pl-sm-2 mr-sm-2">
                     <a class="text-nowrap" href="@siteRoot/sitemap">Site Map</a>
                 </li>
                 @if (Tenant != null && !string.IsNullOrWhiteSpace(Tenant.PrivacyPolicy))
                 {
-                    <li class="border-left pl-2 mr-2">
+                    <li class="pl-sm-2 mr-sm-2">
                         <a asp-controller="Privacy" asp-action="Index">Privacy Policy</a>
                     </li>
                 }
-                 <li class="border-left pl-2 mr-2">
+                <li class=" pl-sm-2 mr-sm-2">
                     <a href="@siteRoot/contact">Contact</a>
                 </li>
-                <li class="border-left pl-2 mr-2">
+                <li class="pl-sm-2 mr-sm-2">
                     <a class="text-nowrap" target="_blank" href="https://www.esdm.co.uk/?utm_source=@Context.Request.Host.Value&amp;utm_medium=referral&amp;utm_campaign=websitebyexegesis">Website by Exegesis SDM Ltd</a>
                 </li>
-                <li class="border-left pl-2 mr-2">
-                    @* you are free to remove the powered by cloudscribe link but we appreciate it if you choose to keep it! *@
+                <li class="pl-sm-2 mr-sm-2">
                     <a class="text-nowrap" target="_blank" href="https://www.cloudscribe.com/?utm_source=@Context.Request.Host.Value&amp;utm_medium=referral&amp;utm_campaign=poweredbycloudscribe">Powered by cloudscribe</a>
                 </li>
             </ul>
         </div>
-        <div class="p-2 text-nowrap">Copyright &copy; @DateTime.Now.Year - @(Tenant?.SiteName ?? "Sample")</div>
+        <div class="pl-sm-2  text-center w-100"><span class="text-nowrap">Copyright &copy; @DateTime.Now.Year</span><span class="d-none d-sm-inline"> - </span><span> @(Tenant?.SiteName ?? "Sample")</span></div>
         <partial name="_CookieConsentRevokePartial" />
+        <div class="w-100 text-center d-lg-none d-xl-none mb-3">
+            <img src="~/img/union-jack-255px.png" alt="union jack" class="" style="height:40px;" />
+        </div>
     </footer>
     @RenderSection("Toolbar", required: false)
     <environment names="Development">

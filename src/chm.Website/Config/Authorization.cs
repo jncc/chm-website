@@ -24,12 +24,33 @@ namespace Microsoft.Extensions.DependencyInjection
                 });
 
             options.AddPolicy(
+                "FileUploadPolicy",
+                authBuilder =>
+                {
+                    authBuilder.RequireRole("Administrators", "Content Administrators");
+                });
+
+            options.AddPolicy(
                 "FileManagerDeletePolicy",
                 authBuilder =>
                 {
                     authBuilder.RequireRole("Administrators", "Content Administrators");
                 });
 
+
+            options.AddPolicy(
+                "ConfigurationManagementPolicy",
+                authBuilder =>
+                {
+                    authBuilder.RequireRole("Administrators", "Content Administrators");
+                });
+
+            options.AddPolicy(
+                "ConfigurationTextEditorPolicy",
+                authBuilder =>
+                {
+                    authBuilder.RequireRole("Administrators", "Content Administrators");
+                });
 
 
 

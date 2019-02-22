@@ -1,0 +1,18 @@
+﻿@model string
+@using Microsoft.AspNetCore.Http.Features
+@{
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var haveConsent = consentFeature?.CanTrack ?? true; // twitter has cookies
+
+    //https://developer.twitter.com/en/docs/twitter-for-websites/timelines/overview
+
+}
+@if (haveConsent && !string.IsNullOrWhiteSpace(Model))
+{
+    <a class="twitter-timeline" href="https://twitter.com/@Model" data-height="600" data-width="500">Tweets by @Model</a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+}
+@if (!haveConsent)
+{
+    <p>Twitter feed not shown until you accept cookie consent and reload the page.</p>
+}
