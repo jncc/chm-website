@@ -39,6 +39,25 @@ var ieBodyClass = isIE ? "IE" : "";
     @RenderSection("Styles", required: false)
     <google-analytics profile-id="@Tenant.GoogleAnalyticsProfileId" user-id="@User.GetUserId()"></google-analytics>
     <base href="@Context.Request.Path" />
+    @*favicon metadata*@
+    <link rel="apple-touch-icon" sizes="57x57" href="~/favicon-resources/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/favicon-resources/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/favicon-resources/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/favicon-resources/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/favicon-resources/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/favicon-resources/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/favicon-resources/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/favicon-resources/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/favicon-resources/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/favicon-resources/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/favicon-resources/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/favicon-resources/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon-resources/favicon-16x16.png">
+    <link rel="manifest" href="~/favicon-resources/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/favicon-resources/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    @*end favicon metadata*@
 </head>
 <body class="d-flex flex-column @ViewData["BodyClass"] @ieBodyClass">
     <header>
@@ -49,24 +68,28 @@ var ieBodyClass = isIE ? "IE" : "";
         </a>
         <div class="fixed-top brand-header text-justify">
             <div class="d-flex w-100">
-                @if (!string.IsNullOrWhiteSpace(Tenant.LogoUrl))
+                @*@if (!string.IsNullOrWhiteSpace(Tenant.LogoUrl))
                 {
                     <div>
                         <a class=" " href="~/@(Tenant?.SiteFolderName ?? "")"><img src="@Tenant.LogoUrl" alt="@Tenant.SiteName" style="height:100px;" class="mr-3" /></a>
                     </div>
 
-                }
-                @if (Tenant.ShowSiteNameLink)
+                }*@
+            <div>
+                <a href="~/@(Tenant?.SiteFolderName ?? "")"><img src="~/img/chm-logo-2020.png" alt="@Tenant.SiteName" class="mr-3" /></a>
+            </div>
+                @*@if (Tenant.ShowSiteNameLink)
                 {
                     <div class=" mt-4 pt-3 d-none d-lg-inline-block flex-grow-1 text-center">
                         <a href="~/@(Tenant?.SiteFolderName ?? "")" class="h3" aria-hidden="true">@Tenant.SiteName </a>
                     </div>
 
-                }
-                    <div class=" pt-4 pr-3">
-                        <img src="~/img/union-jack-255px.png" alt="union jack" class="" style="height:64px;" />
-                    </div>
-                
+                }*@
+            <div>
+                @* was <div class=" pt-4 pr-3">*@
+                    <img src="~/img/union-jack-green-h124px.gif" style="position: absolute; right: 0;" alt="Green Union Jack image" />
+                </div>
+
             </div>
            
             <partial name="SiteHeaderPartial" />
@@ -83,7 +106,7 @@ var ieBodyClass = isIE ? "IE" : "";
             </div>
         </nav>
     </header>
-    <div id="wrapper" class="container-fluid cs-container flex-fill">
+    <div id="wrapper" class="container cs-container flex-fill">
         @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4Breadcrumbs", filterName = NamedNavigationFilters.Breadcrumbs, startingNodeKey = "" })
         <div class="row">
             <main id="content" role="main" class="col order-3">
