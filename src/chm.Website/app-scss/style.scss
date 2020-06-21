@@ -11,7 +11,16 @@ html {
 
 body {
     min-height: 100vh;
-    padding-top: 160px;
+    padding-top: 184px;
+}
+
+a {
+    text-decoration: underline;
+}
+
+footer, footer a, footer .btn-link {
+    background-color: #259D2F;
+    color: white;
 }
 
 #newPostLink {
@@ -96,10 +105,14 @@ td img, video, iframe {
 .navbar {
     font-size: 0.9rem;
     font-weight: 400;
+    /*background-color: #259D2F !important;*/
+}
+.navbar-collapse {
+    /*background-color: #259D2F !important;*/
 }
 
 .navbar.fixed-top {
-    top: 100px;
+    top: 124px;
 }
 
 //$carousel-transition: transform 2s ease, opacity 1s ease-out; // Define transform transition first if using multiple transitions (e.g., `transform 2s ease, opacity .5s ease-out`)
@@ -114,6 +127,10 @@ td img, video, iframe {
             opacity: 1;
         }
     }
+}
+
+.carousel-caption {
+    padding-bottom: 0 !important;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
