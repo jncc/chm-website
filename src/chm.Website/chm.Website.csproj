@@ -1,8 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-    <UserSecretsId>chm.Website-A055BD8D-F614-492E-A65D-175B795A2A6A</UserSecretsId>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>chm_website3b-7A99B805-2AE1-41BE-A457-A171DAE243DA</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -18,10 +22,6 @@
     </None>
 
     <Content Remove="appsettings.Development.json" CopyToPublishDirectory="Never" />
-
-    <Content Include="app-scss\_bootswatch.scss">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="appsettings.Development.json" CopyToPublishDirectory="Never" />
     
     <Content Include="sitefiles\**\wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
@@ -29,45 +29,49 @@
 
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="app-scss\_bootswatch.scss" />
-  </ItemGroup>
-
   <ItemGroup Label="Package References">
 
-    <PackageReference Include="cloudscribe.Core.Web" Version="3.1.100" />
-    <PackageReference Include="cloudscribe.Core.CompiledViews.Bootstrap4" Version="3.1.46" />
-    <PackageReference Include="cloudscribe.Web.StaticFiles" Version="1.1.10" />
-    <PackageReference Include="cloudscribe.Core.Storage.EFCore.PostgreSql" Version="3.0.19" />
+    <PackageReference Include="esdm.shared.ConfigProvider.Data.PostgreSql" Version="3.0.2" />
+
+    <PackageReference Include="esdm.shared.ConfigProvider.Web.UI" Version="3.0.14" />
+
+    <PackageReference Include="esdm.shared.RedirectManager" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.5" />
+    <PackageReference Include="cloudscribe.Core.Web" Version="4.0.10" />
+    <PackageReference Include="cloudscribe.Core.CompiledViews.Bootstrap4" Version="4.0.6" />
+    <PackageReference Include="cloudscribe.Web.StaticFiles" Version="3.0.1" />
+    <PackageReference Include="cloudscribe.Core.Storage.EFCore.PostgreSql" Version="4.0.5" />
     
-    <PackageReference Include="cloudscribe.Core.SimpleContent" Version="4.0.16" />
-    <PackageReference Include="cloudscribe.SimpleContent.Web" Version="4.0.41" />
-    <PackageReference Include="cloudscribe.Core.SimpleContent.CompiledViews.Bootstrap4" Version="4.0.16" />
-    <PackageReference Include="cloudscribe.SimpleContent.CompiledViews.Bootstrap4" Version="4.0.34" />
-    <PackageReference Include="cloudscribe.SimpleContent.MetaWeblog" Version="4.0.9" />
-    <PackageReference Include="cloudscribe.SimpleContent.Syndication" Version="4.0.6" />
-    <PackageReference Include="cloudscribe.SimpleContent.ContentTemplates.Bootstrap4" Version="1.0.18" />
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.PostgreSql" Version="4.0.12" />
+    <PackageReference Include="cloudscribe.Core.SimpleContent" Version="5.0.3" />
+    <PackageReference Include="cloudscribe.SimpleContent.Web" Version="5.0.4" />
+    <PackageReference Include="cloudscribe.Core.SimpleContent.CompiledViews.Bootstrap4" Version="5.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.CompiledViews.Bootstrap4" Version="5.0.3" />
+    <PackageReference Include="cloudscribe.SimpleContent.MetaWeblog" Version="5.0.3" />
+    <PackageReference Include="cloudscribe.SimpleContent.Syndication" Version="5.0.1" />
+    <PackageReference Include="cloudscribe.SimpleContent.ContentTemplates.Bootstrap4" Version="3.0.3" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.PostgreSql" Version="5.0.1" />
 
-    <PackageReference Include="cloudscribe.Logging.Web" Version="3.0.10" />
-    <PackageReference Include="cloudscribe.Logging.EFCore.PostgreSql" Version="3.0.11" />
-
-
-    <PackageReference Include="cloudscribe.SimpleContactForm.CoreIntegration" Version="3.0.3" />
+    <PackageReference Include="cloudscribe.Logging.Web" Version="4.0.1" />
+    <PackageReference Include="cloudscribe.Logging.EFCore.PostgreSql" Version="4.0.1" />
 
 
-    <PackageReference Include="cloudscribe.Web.Localization" Version="2.0.2" />
+    <PackageReference Include="cloudscribe.SimpleContactForm.CoreIntegration" Version="4.0.*" />
 
-    <PackageReference Include="esdm.shared.RedirectManager" Version="1.2.3" />
-    <PackageReference Include="esdm.shared.ConfigProvider.Data.PostgreSql" Version="1.4.2" />
-    <PackageReference Include="esdm.shared.ConfigProvider.Web.UI" Version="1.4.2" />
+
+    <PackageReference Include="cloudscribe.Web.Localization" Version="3.0.3" />
     
-    <PackageReference Include="Microsoft.AspNetCore.App" />
 
 
-   
+
+
+
+
+
+
+    
     
   </ItemGroup>
 
+  
 
 </Project>

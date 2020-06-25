@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:36218/",
-      "sslPort": 44354
+      "applicationUrl": "http://localhost:4222/",
+      "sslPort": 44304
     }
   },
   "profiles": {
@@ -22,18 +22,18 @@
         "ASPNETCORE_ENVIRONMENT": "Production"
       }
     },
-    "chm.Website - Development": {
+    "chm_website3b - Development": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:44354;http://localhost:36218",
+      "applicationUrl": "https://localhost:44304;http://localhost:4222",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "chm.Website - Production": {
+    "chm_website3b - Production": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:44354;http://localhost:36218",
+      "applicationUrl": "https://localhost:44304;http://localhost:4222",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
       }

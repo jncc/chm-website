@@ -16,10 +16,10 @@
 }
 <h2>@ViewData["Title"]</h2>
 <p>
-    The UK Clearing House Mechanism website is maintained by the Joint Nature Conservation Committee (JNCC) on behalf of the Department of the Environment, Fisheries and Rural Affairs (Defra). 
- </p>
+    The UK Clearing House Mechanism website is maintained by the Joint Nature Conservation Committee (JNCC) on behalf of the Department of the Environment, Fisheries and Rural Affairs (Defra).
+</p>
 <p>
-    Please use this form to contact us regarding this website and the UK CHM. Visit the <a style="text-decoration:underline;" href="https://www.cbd.int/chm/">CBD-CHM website</a> for more information on the Convention, 
+    Please use this form to contact us regarding this website and the UK CHM. Visit the <a style="text-decoration:underline;" href="https://www.cbd.int/chm/">CBD-CHM website</a> for more information on the Convention,
     it's mission and implementation.
 </p>
 <form id="contact-form" asp-controller="Contact" asp-action="Index" method="post" class="form-horizontal" role="form">
@@ -61,15 +61,15 @@
     }
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-@if (Model.RecaptchaPublicKey.Length > 0 && Model.UseInvisibleCaptcha)
-{
-    <button class="btn btn-default g-recaptcha" data-sitekey="@Model.RecaptchaPublicKey" data-callback='onCaptchaSubmit'>@sr["Submit"]</button>
-}
-else
-{
-    <button name="submit" type="submit" class="btn btn-primary">@sr["Submit"]</button>
-}
-            
+            @if (Model.RecaptchaPublicKey.Length > 0 && Model.UseInvisibleCaptcha)
+            {
+                <button class="btn btn-primary g-recaptcha" data-sitekey="@Model.RecaptchaPublicKey" data-callback='onCaptchaSubmit'>@sr["Submit"]</button>
+            }
+            else
+            {
+                <button name="submit" type="submit" class="btn btn-primary">@sr["Submit"]</button>
+            }
+
         </div>
     </div>
 </form>

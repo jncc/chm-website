@@ -1,0 +1,28 @@
+﻿@model chm.Website.ViewModels.BookViewModel
+    <div class="container">
+        <h2>@Model.BookTitle</h2>
+        <h3>Book details</h3>
+        <table class="table table-responsive">
+            <tr>
+                <th>Title</th>
+                <td><cite>@Model.BookTitle</cite></td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>@Model.BookAuthor</td>
+            </tr>
+            <tr>
+                <th>ISBN</th>
+                <td>@Model.ISBN</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>@Model.BookGenre</td>
+            </tr>
+        </table>
+        <h3>Precis</h3>
+        <div>@Html.Raw(Model.Precis)</div>
+
+
+    </div>
+
