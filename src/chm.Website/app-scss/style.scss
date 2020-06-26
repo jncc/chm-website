@@ -10,134 +10,164 @@ html {
 }
 
 body {
-    min-height: 100vh;
-    padding-top: 184px;
+    padding-top: 170px;
+    background-position: 100%;
+    z-index: -10000;
+/*    background: url(../img/chm-background.gif);
+    background-repeat: repeat-y;
+    background-size: 100%;
+    background-attachment: initial;*/
+    }
+
+body::before {
+    content: "";
+    background-image: url(../img/chm-background.gif);
+    background-repeat: repeat-y;
+    background-size: 100%;
+    background-attachment: initial;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.3;
+    z-index: -10000;
 }
 
-a {
-    text-decoration: underline;
+    a {
+        text-decoration: underline;
+    }
+
+.navbar .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+.navbar .dropdown-item {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.breadcrumb {
+    border: none !important;
+    background-color: white !important;
+    padding: 0.5rem 1rem 0.5rem 0rem !important;
 }
 
 footer, footer a, footer .btn-link {
-    background-color: rgb(30,139,67);
+    background-color: $chm-green;
     color: white;
 }
 
-#newPostLink {
-    position: absolute;
-    top: 180px;
-    right: 0px;
-}
-
-#editPostLink {
-    position: absolute;
-    top: 210px;
-    right: 0px;
-}
-
-#unpublishPostLink {
-    position: absolute;
-    top: 240px!important;
-    right: 0px!important;
-}
-
-#pageManagerLink {
-    position: absolute;
-    top: 180px;
-    right: 0px;
-    z-index:10;
-}
-
-#newPageLink {
-    position: absolute;
-    top: 210px;
-    right: 0px;
-    z-index: 10;
-}
-
-#editPageLink {
-    position: absolute;
-    top: 240px;
-    right: 0px;
-    z-index:10;
-}
-
-#unpublishPageLink {
-    position: absolute;
-    top: 270px !important;
-    right: 0px !important;
-    z-index: 10;
-}
-
-#sidenavtoggle {
-    position: absolute;
-    top: 210px;
-    right: 5px;
-}
-
-@media screen and (max-width: 812px) {
-    #sidenavtoggle,
-    #sidenavmenu {
-        display: none;
+    #newPostLink {
+        position: absolute;
+        top: 180px;
+        right: 0px;
     }
-}
 
-.flex-fill {
-    flex: 1 1 auto !important;
-}
+    #editPostLink {
+        position: absolute;
+        top: 210px;
+        right: 0px;
+    }
 
-img, video, iframe {
-    max-width: 100%;
-}
+    #unpublishPostLink {
+        position: absolute;
+        top: 240px !important;
+        right: 0px !important;
+    }
 
-td img, video, iframe {
-    max-width: none;
-}
+    #pageManagerLink {
+        position: absolute;
+        top: 180px;
+        right: 0px;
+        z-index: 10;
+    }
 
-.table td, .table th {
-    vertical-align: inherit;
-}
+    #newPageLink {
+        position: absolute;
+        top: 210px;
+        right: 0px;
+        z-index: 10;
+    }
 
-.brand-header {
-    background-color:white;
-}
+    #editPageLink {
+        position: absolute;
+        top: 240px;
+        right: 0px;
+        z-index: 10;
+    }
 
-.navbar {
-    font-size: 0.9rem;
-    font-weight: 400;
-    /*background-color: #259D2F !important;*/
-}
-.navbar-collapse {
-    /*background-color: #259D2F !important;*/
-}
+    #unpublishPageLink {
+        position: absolute;
+        top: 270px !important;
+        right: 0px !important;
+        z-index: 10;
+    }
 
-.navbar.fixed-top {
-    top: 124px;
-}
+    #sidenavtoggle {
+        position: absolute;
+        top: 210px;
+        right: 5px;
+    }
 
-//$carousel-transition: transform 2s ease, opacity 1s ease-out; // Define transform transition first if using multiple transitions (e.g., `transform 2s ease, opacity .5s ease-out`)
-
-.carousel-fade {
-    .carousel-item {
-       
-        opacity: 0.7;
-        transition: opacity 1.2s ease-in-out;
-
-        &.active {
-            opacity: 1;
+    @media screen and (max-width: 812px) {
+        #sidenavtoggle,
+        #sidenavmenu {
+            display: none;
         }
     }
-}
 
-.carousel-caption {
-    padding-bottom: 0 !important;
-    bottom: 8px !important;
-}
+    .flex-fill {
+        flex: 1 1 auto !important;
+    }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-weight: 500;
-  
-}
+    img, video, iframe {
+        max-width: 100%;
+    }
+
+    td img, video, iframe {
+        max-width: none;
+    }
+
+    .table td, .table th {
+        vertical-align: inherit;
+    }
+
+    .brand-header {
+        background-color: white;
+    }
+
+    .navbar {
+        font-size: 0.9rem;
+        font-weight: 400;
+        /*background-color: #259D2F !important;*/
+    }
+
+    .navbar-collapse {
+        /*background-color: #259D2F !important;*/
+    }
+
+    .navbar.fixed-top {
+        top: 124px;
+    }
+    //$carousel-transition: transform 2s ease, opacity 1s ease-out; // Define transform transition first if using multiple transitions (e.g., `transform 2s ease, opacity .5s ease-out`)
+    .carousel-fade {
+        .carousel-item {
+            opacity: 0.7;
+            transition: opacity 1.2s ease-in-out;
+
+            &.active {
+                opacity: 1;
+            }
+        }
+    }
+
+    .carousel-caption {
+        padding-bottom: 0 !important;
+        bottom: 8px !important;
+    }
+
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+        font-weight: 500;
+    }
 
 
 
