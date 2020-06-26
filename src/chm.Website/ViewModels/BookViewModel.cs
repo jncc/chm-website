@@ -15,7 +15,7 @@ namespace chm.Website.ViewModels
 
         //Author
         [Display(Name = "Author")]
-        [Required(ErrorMessage = "Author is required!"), MinLength(2, ErrorMessage = "An Author name cannot be less than 5 characters!")]
+        [Required(ErrorMessage = "Author is required!"), MinLength(5, ErrorMessage = "An Author name cannot be less than 5 characters!")]
         public string BookAuthor { get; set; }
 
         //ISBN
