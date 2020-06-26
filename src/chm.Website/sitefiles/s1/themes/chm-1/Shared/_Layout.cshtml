@@ -94,19 +94,21 @@ var ieBodyClass = isIE ? "IE" : "";
            
             <partial name="SiteHeaderPartial" />
         </div>
-        <div class="container-fluid navbar fixed-top bg-dark" style="height:39px;">
-            <nav class="container navbar navbar-expand-lg navbar-dark fixed-top bg-dark pt-0 pb-0 pl-lg-0" style="height:39px;">
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <div class="navbar fixed-top bg-dark" style="height:39px;">
+                <nav class="container navbar navbar-expand-lg navbar-dark fixed-top bg-dark pt-0 pb-0 pl-lg-0" style="height:39px;">
 
-                <div class="collapse navbar-collapse bg-dark pl-2" id="navbarNavDropdown">
-                    @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4TopNavWithDropdowns", filterName = NamedNavigationFilters.TopNav, startingNodeKey = "" })
-                    @await Html.PartialAsync("_LoginPartialWithDropdowns")
-                </div>
-            </nav>
-        </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse bg-dark pl-2" id="navbarNavDropdown">
+                        @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4TopNavWithDropdowns", filterName = NamedNavigationFilters.TopNav, startingNodeKey = "" })
+                        @await Html.PartialAsync("_LoginPartialWithDropdowns")
+                    </div>
+                </nav>
+            </div>
+
     </header>
     <div id="wrapper" class="container cs-container flex-fill">
         @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4Breadcrumbs", filterName = NamedNavigationFilters.Breadcrumbs, startingNodeKey = "" })
