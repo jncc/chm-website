@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using System.IO;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -10,7 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection SetupDataProtection(
             this IServiceCollection services,
             IConfiguration config,
-            IHostingEnvironment environment
+            IWebHostEnvironment environment
             )
         {
 
@@ -51,6 +52,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 //        .PersistKeysToAzureBlobStorage(container, "keys.xml")
                 //        .ProtectKeysWithAzureKeyVault("<keyIdentifier>", "<clientId>", "<clientSecret>")
                 //        ;
+
+                // https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-2.2
+                //latest docs show it like this:
+                //services.AddDataProtection()
+                //        .PersistKeysToAzureBlobStorage(new Uri("<blobUriWithSasToken>"))
+                //        .ProtectKeysWithAzureKeyVault("<keyIdentifier>", "<clientId>", "<clientSecret>");
 
                 //}
                 //else

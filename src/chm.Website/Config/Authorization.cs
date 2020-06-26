@@ -38,27 +38,14 @@ namespace Microsoft.Extensions.DependencyInjection
                 });
 
 
+            // add other policies here 
+
             options.AddPolicy(
                 "ConfigurationManagementPolicy",
                 authBuilder =>
                 {
                     authBuilder.RequireRole("Administrators", "Content Administrators");
                 });
-
-            options.AddPolicy(
-                "ConfigurationTextEditorPolicy",
-                authBuilder =>
-                {
-                    authBuilder.RequireRole("Administrators", "Content Administrators");
-                });
-
-
-
-
-
-
-
-            // add other policies here 
 
 
             return options;

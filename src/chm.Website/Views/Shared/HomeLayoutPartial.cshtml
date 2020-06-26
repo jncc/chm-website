@@ -18,11 +18,11 @@
             <div class="@GetItemClass(i)">
                 
                     <img class="d-block w-100" src="@Model.Items[i].ResizedUrl" alt="@Model.Items[i].Description" />
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption">
                        
-                        <h5>@Model.Items[i].Title</h5>
+                        <h5 class="d-none d-md-block">@Model.Items[i].Title</h5>
                         
-                        <p>@Model.Items[i].Description</p>
+                        <p class="d-none d-lg-block">@Model.Items[i].Description</p>
                         <a class="btn btn-primary" style="text-decoration:none;" href="@Model.Items[i].LinkUrl" >Find out more...</a>
                     </div>
                 

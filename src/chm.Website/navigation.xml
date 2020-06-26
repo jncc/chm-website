@@ -6,6 +6,7 @@
          treeBuilderName="cloudscribe.SimpleContent.Services.PagesNavigationTreeBuilder"
          >
   <Children>
+
        <NavNode key="Contact"
             controller="Contact"
             action="Index"
@@ -150,7 +151,7 @@
                controller="SiteAdmin" 
                action="Index" 
                text="Administration" 
-               authorizationPolicy="AdminPolicy"
+               authorizationPolicy="AdminMenuPolicy"
                excludeFromSearchSiteMap="true"
                >
           <Children>
@@ -423,11 +424,9 @@
 
 
 
-             
-
 
              
-            
+
 
               <NavNode key="LoginPageInfo"
                        controller="SiteAdmin"
@@ -460,7 +459,8 @@
                  text="File Manager"
                  iconCssClass="far fa-file-image fa-fw"
                  componentVisibility="breadcrumbs,childtree,parenttree"
-                 authorizationPolicy="FileManagerPolicy">
+                 authorizationPolicy="FileManagerPolicy"
+                 excludeFromSearchSiteMap="true">
                     <Children> </Children>
                 </NavNode>
 
@@ -510,7 +510,7 @@
             <NavNode key="Configuration"
                             controller="ConfigurationEditor"
                             action="Default"
-                            text="Configuration"
+                            text="Advanced Config"
                             iconCssClass="fas fa-cog"
                             componentVisibility="breadcrumbs,childtree,parenttree"
                             authorizationPolicy="ConfigurationManagementPolicy">
@@ -666,7 +666,6 @@
                 </NavNode>
               </Children>
             </NavNode>
-
 
             <NavNode key="SystemInfo"
                        controller="SystemInfo"

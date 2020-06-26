@@ -66,7 +66,7 @@ var ieBodyClass = isIE ? "IE" : "";
                 <span class="skiplink-text">Skip to main content</span>
             </div>
         </a>
-        <div class="fixed-top brand-header text-justify">
+        <div class="container fixed-top brand-header text-justify">
             <div class="d-flex w-100">
                 @*@if (!string.IsNullOrWhiteSpace(Tenant.LogoUrl))
                 {
@@ -75,9 +75,9 @@ var ieBodyClass = isIE ? "IE" : "";
                     </div>
 
                 }*@
-            <div>
-                <a href="~/@(Tenant?.SiteFolderName ?? "")"><img src="~/img/chm-logo-2020.png" alt="@Tenant.SiteName" class="mr-3" /></a>
-            </div>
+                <div>
+                    <a href="~/@(Tenant?.SiteFolderName ?? "")"><img src="~/img/chm-logo-2020.png" alt="@Tenant.SiteName" class="ml-n3 mr-3" /></a>
+                </div>
                 @*@if (Tenant.ShowSiteNameLink)
                 {
                     <div class=" mt-4 pt-3 d-none d-lg-inline-block flex-grow-1 text-center">
@@ -85,26 +85,28 @@ var ieBodyClass = isIE ? "IE" : "";
                     </div>
 
                 }*@
-            <div>
+                <div class="d-none d-sm-flex">
                 @* was <div class=" pt-4 pr-3">*@
-                    <img src="~/img/union-jack-green-h124px.gif" style="position: absolute; right: 0;" alt="Green Union Jack image" />
+                    <img src="~/img/union-jack-green-h124px.gif" style="position: absolute; right: 0; margin-right:15px;" alt="Green Union Jack image" />
                 </div>
 
             </div>
            
             <partial name="SiteHeaderPartial" />
         </div>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark pt-0 pb-0" style="height:60px;">
-            
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <div class="container-fluid navbar fixed-top bg-dark" style="height:39px;">
+            <nav class="container navbar navbar-expand-lg navbar-dark fixed-top bg-dark pt-0 pb-0 pl-lg-0" style="height:39px;">
 
-            <div class="collapse navbar-collapse bg-dark pl-2" id="navbarNavDropdown">
-                @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4TopNavWithDropdowns", filterName = NamedNavigationFilters.TopNav, startingNodeKey = "" })
-                @await Html.PartialAsync("_LoginPartialWithDropdowns")
-            </div>
-        </nav>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse bg-dark pl-2" id="navbarNavDropdown">
+                    @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4TopNavWithDropdowns", filterName = NamedNavigationFilters.TopNav, startingNodeKey = "" })
+                    @await Html.PartialAsync("_LoginPartialWithDropdowns")
+                </div>
+            </nav>
+        </div>
     </header>
     <div id="wrapper" class="container cs-container flex-fill">
         @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4Breadcrumbs", filterName = NamedNavigationFilters.Breadcrumbs, startingNodeKey = "" })

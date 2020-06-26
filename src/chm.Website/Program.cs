@@ -1,36 +1,37 @@
 ﻿using esdm.shared.ConfigProvider.Models;
-
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Linq;
 
-namespace chm.Website
+namespace chm_website3b
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var hostBuilder = CreateWebHostBuilder(args);
-
-            var environment = hostBuilder.GetSetting("environment") ?? "Production";
+            var hostBuilder = CreateHostBuilder(args);
+            // ESDM
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
+            // Db connection options for Logger and for EF Config provider migrations 
             var preBuildConfig = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
-                    .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
-                    .Build();
-
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
+            .Build();
             var postgreSqlConnectionString = preBuildConfig.GetConnectionString("EntityFrameworkConnection");
-            var optionsAction = ConfigPostgreSqlStartupExtensions.GetOptionsBuilderForPostgreSql(postgreSqlConnectionString, 10, 10);
+            var optionsAction = ConfigPostgreSqlStartupExtensions.GetOptionsBuilderForPostgreSql(postgreSqlConnectionString);
             hostBuilder.ConfigureAppConfiguration((builderContext, conf) =>
             {
                 conf.AddPostgreSqlConfig(optionsAction);
                 conf.AddPostgreSqlConfigOverride(optionsAction);
             });
+            // end ESDM
 
             var host = hostBuilder.Build();
 
@@ -39,7 +40,6 @@ namespace chm.Website
                 var scopedServices = scope.ServiceProvider;
                 try
                 {
-                    scopedServices.GetRequiredService<IDefaultMigrator>().InsertConfigurationDefaults();
                     EnsureDataStorageIsReady(scopedServices);
 
                 }
@@ -50,17 +50,25 @@ namespace chm.Website
                 }
             }
 
-            var env = host.Services.GetRequiredService<IHostingEnvironment>();
+            var env = host.Services.GetRequiredService<IWebHostEnvironment>();
             var loggerFactory = host.Services.GetRequiredService<ILoggerFactory>();
             var config = host.Services.GetRequiredService<IConfiguration>();
             ConfigureLogging(env, loggerFactory, host.Services, config);
-
+            // ESDM config provider
+            // Invoke the EF migrations to insert configuration defaults
+            using (var scope = host.Services.CreateScope())
+            {
+                scope.ServiceProvider.GetRequiredService<IDefaultMigrator>().InsertConfigurationDefaults();
+            }
             host.Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
 
         private static void EnsureDataStorageIsReady(IServiceProvider scopedServices)
         {
@@ -75,7 +83,7 @@ namespace chm.Website
         }
 
         private static void ConfigureLogging(
-            IHostingEnvironment env,
+            IWebHostEnvironment env,
             ILoggerFactory loggerFactory,
             IServiceProvider serviceProvider,
             IConfiguration config

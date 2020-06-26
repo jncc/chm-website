@@ -1,36 +1,34 @@
-using esdm.shared.RedirectManager;
+﻿using esdm.shared.RedirectManager;
 using esdm.shared.RedirectManager.Definitions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 
-
-namespace chm.Website
+namespace chm_website3b
 {
     public class Startup
     {
         public Startup(
             IConfiguration configuration,
-            IHostingEnvironment env,
-            ILogger<Startup> logger
+            IWebHostEnvironment env
             )
         {
             _configuration = configuration;
             _environment = env;
-            _log = logger;
 
             _sslIsAvailable = _configuration.GetValue<bool>("AppSettings:UseSsl");
         }
 
         private readonly IConfiguration _configuration;
-        private readonly IHostingEnvironment _environment;
+        private readonly IWebHostEnvironment _environment;
         private readonly bool _sslIsAvailable;
-        private readonly ILogger _log;
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -54,8 +52,9 @@ namespace chm.Website
 
             //// **** IMPORTANT *****
             // This is a custom extension method in Config/CloudscribeFeatures.cs
-            services.SetupDataStorage(_configuration, false);
-
+            //services.SetupDataStorage(_configuration, _environment);
+            // hacked version
+            services.SetupDataStorage(_configuration);
 
             //*** Important ***
             // This is a custom extension method in Config/CloudscribeFeatures.cs
@@ -63,7 +62,7 @@ namespace chm.Website
 
             //*** Important ***
             // This is a custom extension method in Config/Localization.cs
-            services.SetupLocalization();
+            services.SetupLocalization(_configuration);
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -99,7 +98,7 @@ namespace chm.Website
         public void Configure(
             IServiceProvider serviceProvider,
             IApplicationBuilder app,
-            IHostingEnvironment env,
+            IWebHostEnvironment env,
             ILoggerFactory loggerFactory,
             IOptions<cloudscribe.Core.Models.MultiTenantOptions> multiTenantOptionsAccessor,
             IOptions<RequestLocalizationOptions> localizationOptionsAccessor,
@@ -111,7 +110,6 @@ namespace chm.Website
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -125,10 +123,13 @@ namespace chm.Website
             {
                 app.UseHttpsRedirection();
             }
+
             app.UseStaticFiles();
             app.UseCloudscribeCommonStaticFiles();
             app.UseConfigProviderWebUiStaticResources();
             app.UseCookiePolicy();
+
+            app.UseRouting();
 
             app.UseRequestLocalization(localizationOptionsAccessor.Value);
 
@@ -136,17 +137,22 @@ namespace chm.Website
 
             var multiTenantOptions = multiTenantOptionsAccessor.Value;
 
-            app.UseCloudscribeCore(
-                    loggerFactory,
-                    multiTenantOptions,
-                    _sslIsAvailable);
+            app.UseCloudscribeCore();
 
 
-
+#pragma warning disable MVC1005 // Cannot use UseMvc with Endpoint Routing.
+            // workaround for 
+            //https://github.com/cloudscribe/cloudscribe.SimpleContent/issues/466
             app.UseMvc(routes =>
-            {
-                routes.UseCustomRoutes();
-            });
+                       {
+                           routes.UseCustomRoutes();
+                       });
+#pragma warning restore MVC1005 // Cannot use UseMvc with Endpoint Routing.
+
+            //             app.UseEndpoints(endpoints =>
+            //             {
+            //                 endpoints.UseCustomRoutes();
+            //             });
 
         }
 
