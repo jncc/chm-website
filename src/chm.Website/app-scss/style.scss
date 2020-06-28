@@ -13,11 +13,12 @@ body {
     padding-top: 170px;
     background-position: 100%;
     z-index: -10000;
-/*    background: url(../img/chm-background.gif);
+    min-height: 100vh;
+    /*    background: url(../img/chm-background.gif);
     background-repeat: repeat-y;
     background-size: 100%;
     background-attachment: initial;*/
-    }
+}
 
 body::before {
     content: "";
