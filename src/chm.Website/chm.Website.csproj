@@ -31,6 +31,11 @@
 
   <ItemGroup Label="Package References">
 
+    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Mvc" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Views.Bootstrap4" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.CoreIntegration" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.PostgreSql" Version="3.0.2" />
+
     <PackageReference Include="esdm.shared.ConfigProvider.Data.PostgreSql" Version="3.0.2" />
 
     <PackageReference Include="esdm.shared.ConfigProvider.Web.UI" Version="3.0.14" />
