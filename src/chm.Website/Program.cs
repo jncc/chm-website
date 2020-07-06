@@ -9,7 +9,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace chm_website3b
+namespace chm.Website
 {
     public class Program
     {
@@ -77,7 +77,7 @@ namespace chm_website3b
             CoreEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
             SimpleContentEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
 
-
+            DynamicPolicyEFCore.InitializeDatabaseAsync(scopedServices).Wait();
 
 
         }

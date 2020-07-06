@@ -47,6 +47,14 @@ namespace Microsoft.Extensions.DependencyInjection
                     authBuilder.RequireRole("Administrators", "Content Administrators");
                 });
 
+            // probably best and recommended to not let this policy be managed from the UI
+            // since this policy controls who can manage policies from the UI
+            options.AddPolicy(
+                "PolicyManagementPolicy",
+                authBuilder =>
+                {
+                    authBuilder.RequireRole("Administrators");
+                });
 
             return options;
         }

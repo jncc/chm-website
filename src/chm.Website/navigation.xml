@@ -214,7 +214,29 @@
                        excludeFromSearchSiteMap="true">
                   <Children></Children>
               </NavNode>
-
+            <NavNode key="PolicyManagment"
+                                         controller="PolicyManagement"
+                                         action="Index"
+                                         text="Authorization Policies"
+                                         preservedRouteParameters="siteId"
+                                         iconCssClass="fas fa-key fa-fw"
+                                         componentVisibility="breadcrumbs,childtree,parenttree"
+                                         excludeFromSearchSiteMap="true"
+                                         authorizationPolicy="PolicyManagementPolicy">
+              <Children>
+                <NavNode key="PolicyEdit"
+                    controller="PolicyManagement"
+                    action="EditPolicy"
+                    text="Edit Policy"
+                    preservedRouteParameters="id"
+                    componentVisibility="breadcrumbs"
+                    excludeFromSearchSiteMap="true"
+                    authorizationPolicy="PolicyManagementPolicy">
+                  <Children>
+                  </Children>
+                </NavNode>
+              </Children>
+            </NavNode>
 
                <NavNode key="RoleAdmin"
                        controller="RoleAdmin"

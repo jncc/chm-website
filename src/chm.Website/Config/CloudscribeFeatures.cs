@@ -16,6 +16,8 @@ using cloudscribe.Logging;
 using cloudscribe.Logging.EFCore;
 using cloudscribe.Versioning;
 using cloudscribe.Logging.EFCore.Common;
+using cloudscribe.DynamicPolicy.Storage.EFCore.PostgreSql;
+using cloudscribe.DynamicPolicy.Storage.EFCore.Common;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -105,10 +107,34 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddCloudscribeLoggingEFCommon();
             services.AddScoped<ILoggingDbContext, LoggingDbContext>();
             services.AddSingleton<ILoggingDbContextFactory, LoggingDbContextFactory>();
-            services.AddScoped<IVersionProvider, VersionProvider>();
+            services.AddScoped<IVersionProvider, cloudscribe.Logging.EFCore.PostgreSql.VersionProvider>();
             services.AddScoped<ITruncateLog, Truncator>();
             //
+            // DynamicAuth
+            services.AddEntityFrameworkNpgsql()
+                            .AddDbContext<DynamicPolicyDbContext>(options =>
+                                options.UseNpgsql(connectionString,
+                                npgsqlOptionsAction: sqlOptions =>
+                                {
+                            //        if (maxConnectionRetryCount > 0)
+                            //        {
+                            ////Configuring Connection Resiliency: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency 
+                            //sqlOptions.EnableRetryOnFailure(
+                            //                maxRetryCount: maxConnectionRetryCount,
+                            //                maxRetryDelay: TimeSpan.FromSeconds(maxConnectionRetryDelaySeconds),
+                            //                errorCodesToAdd: transientErrorCodesToAdd);
+                            //        }
+                                }),
+                                optionsLifetime: ServiceLifetime.Singleton
+                                );
 
+
+            services.AddScoped<IDynamicPolicyDbContext, DynamicPolicyDbContext>();
+
+            services.AddSingleton<IDynamicPolicyDbContextFactory, DynamicPolicyDbContextFactory>();
+
+            services.AddDynamicPolicyEFStorageCommon();
+            services.AddScoped<IVersionProvider, cloudscribe.DynamicPolicy.Storage.EFCore.PostgreSql.VersionProvider>();
 
             // End Workarounds                        
 
@@ -137,7 +163,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddCloudscribeSimpleContactFormCoreIntegration(config);
             services.AddCloudscribeSimpleContactForm(config);
 
-
+            services.AddCloudscribeDynamicPolicyIntegration(config);
+            services.AddDynamicAuthorizationMvc(config);
 
 
 
