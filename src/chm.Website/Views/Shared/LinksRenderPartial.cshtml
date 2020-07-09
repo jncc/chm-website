@@ -1,0 +1,33 @@
+﻿@model cloudscribe.SimpleContent.ContentTemplates.ViewModels.ContentWithImageAndListOfLinksModel
+@using cloudscribe.SimpleContent.ContentTemplates
+@using cloudscribe.SimpleContent.ContentTemplates.Configuration
+@using cloudscribe.SimpleContent.ContentTemplates.ViewModels
+@inject IStringLocalizer<ContentTemplateResources> sr
+@inject ILinkListOptionsProvider optionsProvider
+@{
+    
+    var sorted = Model.Items.OrderBy(x => x.Sort).ToList();
+    var options = await optionsProvider.ResolveLinkListOptions(Context.Request.Host.Host, Context.Request.Path);
+}
+@functions {
+public string GetTarget(CHMListItemModel item)
+{
+    if (item.OpensInNewWindow) { return "_blank"; }
+    return null;
+}
+}
+<div class="content-top">
+    @Html.Raw(Model.Content)
+</div>
+<figure>
+    <img class="float-left mr-2" src="Model.ImageUrl" alt="Model.ImageCaption" />
+    <figcaption>Model.ImageCaption</figcaption>
+</figure>
+<div class="links-wrap">
+    @for (int i = 0; i < Model.Items.Count; i++)
+    {
+    <div class="clearfix linklist-item">
+        <a href="@sorted[i].LinkUrl" target="@GetTarget(sorted[i])">@sorted[i].LinkText</a>
+    </div>
+    }
+</div>
