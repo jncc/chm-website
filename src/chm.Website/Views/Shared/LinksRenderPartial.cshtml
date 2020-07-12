@@ -1,33 +1,66 @@
-﻿@model cloudscribe.SimpleContent.ContentTemplates.ViewModels.ContentWithImageAndListOfLinksModel
+﻿@model chm.Website.ViewModels.ContentWithImageAndListOfLinksModel
 @using cloudscribe.SimpleContent.ContentTemplates
 @using cloudscribe.SimpleContent.ContentTemplates.Configuration
-@using cloudscribe.SimpleContent.ContentTemplates.ViewModels
+@*@using cloudscribe.SimpleContent.ContentTemplates.ViewModels*@
+@using chm.Website.ViewModels
 @inject IStringLocalizer<ContentTemplateResources> sr
 @inject ILinkListOptionsProvider optionsProvider
 @{
-    
+
     var sorted = Model.Items.OrderBy(x => x.Sort).ToList();
-    var options = await optionsProvider.ResolveLinkListOptions(Context.Request.Host.Host, Context.Request.Path);
+    //var options = await optionsProvider.ResolveLinkListOptions(Context.Request.Host.Host, Context.Request.Path);
 }
 @functions {
-public string GetTarget(CHMListItemModel item)
-{
-    if (item.OpensInNewWindow) { return "_blank"; }
-    return null;
-}
-}
-<div class="content-top">
-    @Html.Raw(Model.Content)
-</div>
-<figure>
-    <img class="float-left mr-2" src="Model.ImageUrl" alt="Model.ImageCaption" />
-    <figcaption>Model.ImageCaption</figcaption>
-</figure>
-<div class="links-wrap">
-    @for (int i = 0; i < Model.Items.Count; i++)
+    public string GetTarget(CHMListItemModel item)
     {
-    <div class="clearfix linklist-item">
-        <a href="@sorted[i].LinkUrl" target="@GetTarget(sorted[i])">@sorted[i].LinkText</a>
-    </div>
+        if (item.OpensInNewWindow) { return "_blank"; }
+        return null;
     }
-</div>
+    public string GetAltText(ContentWithImageAndListOfLinksModel theimage)
+    {
+        if (String.IsNullOrEmpty(theimage.ImageAltText)) { return theimage.ImageAltText; }
+        else if (String.IsNullOrEmpty(theimage.ImageCaption)) { return theimage.ImageCaption; }
+        return null;
+    }
+}
+    <div class="d-flex row">
+        @if (!String.IsNullOrEmpty(Model.Image) || Model.Items.Count > 0)
+        {
+            <div class="col-md-8">
+                @Html.Raw(Model.Content)
+            </div>
+            <div class="col-md-4">
+                @if (!String.IsNullOrEmpty(Model.Image))
+                {
+                    <figure>
+                        <img class="mr-2" src="@Model.Image" alt="@(!String.IsNullOrEmpty(Model.ImageAltText) ? Model.ImageAltText : Model.ImageCaption)" />
+                        @if (!String.IsNullOrEmpty(Model.ImageCaption))
+                        {
+                            <figcaption>@Model.ImageCaption</figcaption>
+                        }
+                    </figure>
+                }
+                <div class="links-wrap">
+                    @if (Model.Items.Count > 0)
+                    {
+                        <h3>Relevant Links</h3>
+                        <ul>
+                            @for (int i = 0; i < Model.Items.Count; i++)
+                            {
+                                <li>
+                                    <a href="@sorted[i].LinkUrl" target="@GetTarget(sorted[i])">@sorted[i].LinkText</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col">
+                @Html.Raw(Model.Content)
+            </div>
+        }
+    </div>

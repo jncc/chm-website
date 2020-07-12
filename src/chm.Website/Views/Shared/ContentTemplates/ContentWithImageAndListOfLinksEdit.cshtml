@@ -1,4 +1,4 @@
-﻿@model cloudscribe.SimpleContent.ContentTemplates.ViewModels.ContentWithImageAndListOfLinksModel
+﻿@model chm.Website.ViewModels.ContentWithImageAndListOfLinksModel
 @using cloudscribe.SimpleContent.ContentTemplates
 @using cloudscribe.SimpleContent.ContentTemplates.Configuration
 @using Microsoft.AspNetCore.Antiforgery
@@ -25,7 +25,7 @@
 
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-        <a id="cedit-tab1" class="nav-link active" href="#tabMain" data-toggle="tab" role="tab" aria-controls="tabMain" aria-selected="true">@sr["Links"]</a>
+        <a id="cedit-tab1" class="nav-link active" href="#tabMain" data-toggle="tab" role="tab" aria-controls="tabMain" aria-selected="true">@sr["Content"]</a>
     </li>
     <li class="nav-item">
         <a id="cedit-tab2" class="nav-link" href="#tabImage" data-toggle="tab" role="tab" aria-controls="tabImage" aria-selected="false">@sr["Image"]</a>
@@ -47,10 +47,12 @@
 
     </div>
     <div class="tab-pane pt-2" id="tabImage" role="tabpanel" aria-labelledby="cedit-tab2">
-        @Html.LabelFor(m => m.Image, htmlAttributes: new { @class = "control-label col-lg-2" })
-        @Html.TextBoxFor(m => m.Image, htmlAttributes: new { @class = "form-control col-lg-4" })
-        @Html.LabelFor(m => m.ImageCaption, htmlAttributes: new { @class = "control-label col-lg-2" })
-        @Html.TextBoxFor(m => m.ImageCaption, htmlAttributes: new { @class = "form-control col-lg-4" })
+        @Html.LabelFor(m => m.Image, htmlAttributes: new { @class = "control-label col-lg-6" })
+        @Html.TextBoxFor(m => m.Image, htmlAttributes: new { @class = "form-control col-lg-6" })
+        @Html.LabelFor(m => m.ImageCaption, htmlAttributes: new { @class = "control-label col-lg-6" })
+        @Html.TextBoxFor(m => m.ImageCaption, htmlAttributes: new { @class = "form-control col-lg-6" })
+        @Html.LabelFor(m => m.ImageAltText, htmlAttributes: new { @class = "control-label col-lg-6" })
+        @Html.TextBoxFor(m => m.ImageAltText, htmlAttributes: new { @class = "form-control col-lg-6" })
     </div>
     <div class="tab-pane pt-2" id="tabLinks" role="tabpanel" aria-labelledby="cedit-tab3">
 
@@ -63,16 +65,11 @@
             </div>
             <div id="itemsEditList" style="max-width:775px" data-bind="foreach: Items">
                 <div class="row">
-                    <div class="col-3" data-bind="attr: { visible: ResizedUrl !== undefined }">
-                        <img style="max-width:200px;max-height:150px;" data-bind="attr: { src: ResizedUrl }" />
-                    </div>
                     <div class="col-8">
-                        <input class="form-control" title="@sr["Title"]" data-bind="value: Title" placeholder="@sr["Title"]" />
-                        <span class="text-danger" data-bind='visible: Title.hasError, text: Title.validationMessage'> </span>
+                        <input class="form-control" title="@sr["Link Text"]" data-bind="value: LinkText" placeholder="@sr["Link Text"]" />
+                        <span class="text-danger" data-bind='visible: LinkText.hasError, text: LinkText.validationMessage'> </span>
                         <input class="form-control" title="@sr["Link Url"]" data-bind="value: LinkUrl" placeholder="@sr["Link Url"]" />
                         <span class="invalid-feedback" data-bind='visible: LinkUrl.hasError, text: LinkUrl.validationMessage'> </span>
-                        <textarea class="form-control" title="@sr["Description"]" placeholder="@sr["Description"]" data-bind="value: Description"></textarea>
-                        <input class="form-control" title="@sr["Thumbnail AltText"]" placeholder="@sr["Thumbnail AltText"]" data-bind="value: AltText" />
                         <div class="form-group form-check">
                             <input data-bind="checked: OpensInNewWindow, attr:{ id: 'chkNewWindow' + $index() }" type="checkbox" class="form-check-input">
                             <label data-bind="attr:{ 'for': 'chkNewWindow' + $index() }" class="form-check-label">@sr["Opens in new window"]</label>
@@ -90,13 +87,13 @@
             <legend class="w-auto">@sr["Add a New Link"]</legend>
 
             <div class="form-group">
-                <label for="NewTitle">@sr["Link Title - required"]</label>
-                <input id="NewTitle" class="form-control" data-bind="value: newItemTitle" />
-                <span class="invalid-feedback" data-bind='visible: newItemTitle.hasError, text: newItemTitle.validationMessage'> </span>
+                <label for="NewLinkText">@sr["Link Text - required"]</label>
+                <input id="NewLinkText" class="form-control" data-bind="value: newItemLinkText" />
+                <span class="invalid-feedback" data-bind='visible: newItemLinkText.hasError, text: newItemLinkText.validationMessage'> </span>
             </div>
             <div class="form-group">
-                <label for="NewUrl">@sr["Link Url - required"]</label>
-                <input id="NewUrl" class="form-control" data-bind="value: newItemLinkUrl" />
+                <label for="NewLinkUrl">@sr["Link Url - required"]</label>
+                <input id="NewLinkUrl" class="form-control" data-bind="value: newItemLinkUrl" />
                 <span class="invalid-feedback" data-bind='visible: newItemLinkUrl.hasError, text: newItemLinkUrl.validationMessage'> </span>
             </div>
             <div class="form-group form-check">

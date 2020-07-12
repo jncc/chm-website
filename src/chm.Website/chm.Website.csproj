@@ -23,10 +23,15 @@
 
     <Content Remove="appsettings.Development.json" CopyToPublishDirectory="Never" />
     <Content Include="appsettings.Development.json" CopyToPublishDirectory="Never" />
+    <Content Include="web.config_XX" />
     
     <Content Include="sitefiles\**\wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="SharedThemes\**\wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
 
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="web.config_XX" />
   </ItemGroup>
 
   <ItemGroup Label="Package References">
