@@ -96,14 +96,14 @@ var ieBodyClass = isIE ? "IE" : "";
         </div>
 
             <div class="navbar fixed-top bg-dark" style="height:39px;">
-                <nav class="container navbar navbar-expand-lg navbar-dark fixed-top bg-dark pt-0 pb-0 pl-lg-0" style="height:39px;">
+                <nav class="container navbar navbar-expand-lg navbar-dark fixed-top bg-dark pt-0 pb-0 ps-lg-0" style="height:39px;">
 
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse bg-dark pl-2" id="navbarNavDropdown">
-                        @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4TopNavWithDropdowns", filterName = NamedNavigationFilters.TopNav, startingNodeKey = "" })
+                    <div class="collapse navbar-collapse bg-dark ps-2" id="navbarNavDropdown">
+                        @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap5TopNavWithDropdowns", filterName = NamedNavigationFilters.TopNav, startingNodeKey = "" })
                         @await Html.PartialAsync("_LoginPartialWithDropdowns")
                     </div>
                 </nav>
@@ -111,7 +111,7 @@ var ieBodyClass = isIE ? "IE" : "";
 
     </header>
     <div id="wrapper" class="container cs-container flex-fill">
-        @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4Breadcrumbs", filterName = NamedNavigationFilters.Breadcrumbs, startingNodeKey = "" })
+        @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap5Breadcrumbs", filterName = NamedNavigationFilters.Breadcrumbs, startingNodeKey = "" })
         <div class="row">
             <main id="content" role="main" class="col order-3">
                 <partial name="AlertsPartial" />
@@ -145,25 +145,25 @@ var ieBodyClass = isIE ? "IE" : "";
         <partial name="SiteFooterPartial" />
         <div class="p-2">
             <ul class="list-unstyled d-md-flex flex-wrap">
-                <li class="pl-sm-2 mr-sm-2">
+                <li class="ps-sm-2 me-sm-2">
                     <a class="text-nowrap" href="@siteRoot/sitemap">Site Map</a>
                 </li>
                 @if (Tenant != null && !string.IsNullOrWhiteSpace(Tenant.PrivacyPolicy))
                 {
-                    <li class="pl-sm-2 mr-sm-2">
+                    <li class="ps-sm-2 me-sm-2">
                         <a asp-controller="Privacy" asp-action="Index">Privacy Policy</a>
                     </li>
                 }
-                <li class=" pl-sm-2 mr-sm-2">
+                <li class=" ps-sm-2 me-sm-2">
                     <a href="@siteRoot/contact">Contact</a>
                 </li>
-                <li class="pl-sm-2 mr-sm-2">
-                    <a class="text-nowrap" target="_blank" href="http://jncc.defra.gov.uk/">Site maintained by JNCC</a>
+                <li class="ps-sm-2 me-sm-2">
+                    <a class="text-nowrap" href="http://jncc.defra.gov.uk/">Site maintained by JNCC</a>
                 </li>
                
             </ul>
         </div>
-        <div class="pl-sm-2  text-center w-100"><span class="text-nowrap">Copyright &copy; @DateTime.Now.Year</span><span class="d-none d-sm-inline"> - </span><span> @(Tenant?.SiteName ?? "Sample")</span></div>
+        <div class="ps-sm-2  text-center w-100"><span class="text-nowrap">Copyright &copy; @DateTime.Now.Year</span><span class="d-none d-sm-inline"> - </span><span> @(Tenant?.SiteName ?? "Sample")</span></div>
         <partial name="_CookieConsentRevokePartial" />
         
     </footer>
@@ -174,9 +174,9 @@ var ieBodyClass = isIE ? "IE" : "";
         <script src="~/cr/js/bs4.smartmenus.min.js"></script>
     </environment>
     <environment names="Staging,Production">
-        <script src="~/js/jquery.min.js" cs-resolve-theme-resource="true" cs-tenant="@Tenant"></script>
-        <script src="~/js/bootstrap.bundle.min.js" cs-resolve-theme-resource="true" cs-tenant="@Tenant"></script>
-        <script src="~/cr/js/bs4.smartmenus.min.js"></script>
+        <script src="~/js/jquery.min.js" asp-append-version="true" cs-resolve-theme-resource="true" cs-tenant="@Tenant"></script>
+        <script src="~/js/bootstrap.bundle.min.js" asp-append-version="true" cs-resolve-theme-resource="true" cs-tenant="@Tenant"></script>
+        <script src="~/cr/js/bs4.smartmenus.min.js" asp-append-version="true"></script>
     </environment>
     @RenderSection("Bottom", required: false)
     @RenderSection("Scripts", required: false)

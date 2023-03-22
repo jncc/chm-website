@@ -1,7 +1,7 @@
 // Custom non-standard variables
 
-$mybrand: rgb(30,139,67);
-
+$mybrand: #1C7D3C;
+// was rgb(30,139,67); but failed at AA on normal text
 
 // Bootstrap 4 Variables
 // Every Sass variable in Bootstrap 4 includes the !default flag allowing you to override the variables default value in your own Sass without modifying Bootstrap source code. 
@@ -12,10 +12,10 @@ $mybrand: rgb(30,139,67);
 // Color system
 //
 
-$chm-green: rgb(30,139,67);
-
+$chm-green: #1C7D3C;
+// was rgb(30,139,67); but failed at AA on normal text
 // stylelint-disable
-$white: #fff ;
+$white: #fff;
 $gray-100: #f8f9fa ;
 $gray-200: #e9ecef ;
 $gray-300: #dee2e6 ;
