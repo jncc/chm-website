@@ -33,7 +33,7 @@
                 @if (!String.IsNullOrEmpty(Model.Image))
                 {
                     <figure>
-                        <img class="mr-2" src="@Model.Image" alt="@(!String.IsNullOrEmpty(Model.ImageAltText) ? Model.ImageAltText : Model.ImageCaption)" />
+                        <img class="me-2" src="@Model.Image" alt="@(!String.IsNullOrEmpty(Model.ImageAltText) ? Model.ImageAltText : Model.ImageCaption)" />
                         @if (!String.IsNullOrEmpty(Model.ImageCaption))
                         {
                             <figcaption>@Model.ImageCaption</figcaption>

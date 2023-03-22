@@ -25,13 +25,13 @@
 
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-        <a id="cedit-tab1" class="nav-link active" href="#tabMain" data-toggle="tab" role="tab" aria-controls="tabMain" aria-selected="true">@sr["Gallery"]</a>
+        <a id="cedit-tab1" class="nav-link active" href="#tabMain" data-bs-toggle="tab" role="tab" aria-controls="tabMain" aria-selected="true">@sr["Gallery"]</a>
     </li>
     <li class="nav-item">
-        <a id="cedit-tab2" class="nav-link" href="#tabTopContent" data-toggle="tab" role="tab" aria-controls="tabTopContent" aria-selected="false">@sr["Top Content"]</a>
+        <a id="cedit-tab2" class="nav-link" href="#tabTopContent" data-bs-toggle="tab" role="tab" aria-controls="tabTopContent" aria-selected="false">@sr["Top Content"]</a>
     </li>
     <li class="nav-item">
-        <a id="cedit-tab3" class="nav-link" href="#tabBottomContent" data-toggle="tab" role="tab" aria-controls="tabBottomContent" aria-selected="false">@sr["Bottom Content"]</a>
+        <a id="cedit-tab3" class="nav-link" href="#tabBottomContent" data-bs-toggle="tab" role="tab" aria-controls="tabBottomContent" aria-selected="false">@sr["Bottom Content"]</a>
     </li>
 </ul>
 <div class="tab-content">
@@ -50,8 +50,8 @@
             <span asp-validation-for="TwitterHandle" class="text-danger"></span>
         </div>
 
-        <fieldset class="border p-2 mb-2">
-            <legend class="w-auto">@sr["Current Images"]</legend>
+        <fieldset class="border p-2 mb-2 mt-2">
+            <legend>@sr["Current Images"]</legend>
             <div data-bind="visible: Items().length === 0">
                 @sr["No images have been added yet, drop or browse images below to add your first image, then click the button to add it to the gallery."]
             </div>
@@ -61,9 +61,9 @@
                         <img style="max-width:200px;max-height:150px;" data-bind="attr: { src: ResizedUrl }, visible: ThumbnailUrl !== undefined" />
                     </div>
                     <div class="col-8">
-                        <input class="form-control" title="@sr["Title"]" data-bind="value: Title" placeholder="@sr["Title"]" />
-                        <textarea class="form-control" style="height:110px;" title="@sr["Description"]" placeholder="@sr["Description"]" data-bind="value: Description"></textarea>
-                        <input class="form-control" title="@sr["LinkUrl"]" data-bind="value: LinkUrl" placeholder="@sr["LinkUrl"]" />
+                        <input class="form-control mb-1" title="@sr["Title"]" data-bind="value: Title" placeholder="@sr["Title"]" />
+                        <textarea class="form-control mb-1" style="height:110px;" title="@sr["Description"]" placeholder="@sr["Description"]" data-bind="value: Description"></textarea>
+                        <input class="form-control mb-1" title="@sr["LinkUrl"]" data-bind="value: LinkUrl" placeholder="@sr["LinkUrl"]" />
                     </div>
                     <div class="col-1">
                         <a href="#" data-bind="click: $root.removeItem" title="@sr["Delete"]"><i class="fa fa-trash-o far fa-trash-alt fa-2x"></i></a> <br /><br />
@@ -146,7 +146,7 @@
     <div class="modal-dialog modal-lg" style="height:99%;min-width:99%!important;">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true" title="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <iframe id="frFileDialog" frameborder="0" style="overflow:hidden;height:100%;width:100%;min-height: 650px;"></iframe>
         </div>
